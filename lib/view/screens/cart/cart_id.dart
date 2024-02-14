@@ -148,7 +148,7 @@ class CartId extends StatelessWidget {
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 1,
-                                childAspectRatio: 3,
+                                childAspectRatio: 2.3,
                               ),
                               itemCount: controller.data.length,
                               itemBuilder: (context, index) {
@@ -161,6 +161,8 @@ class CartId extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 20),
                                           height: 113,
                                           width: 100,
                                           decoration: BoxDecoration(
@@ -196,22 +198,26 @@ class CartId extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w300),
                                                 ),
-                                                Text(
-                                                  translationData(
-                                                      controller.data[index]
-                                                          .restaurantNameAr,
-                                                      controller.data[index]
-                                                          .restaurantName),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium!
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .blackColor3,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w300),
+                                                Flexible(
+                                                  child: Text(
+                                                    translationData(
+                                                        controller.data[index]
+                                                            .restaurantNameAr,
+                                                        controller.data[index]
+                                                            .restaurantName),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .blackColor3,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w300),
+                                                  ),
                                                 ),
+                                                const Spacer(),
                                                 Row(
                                                   children: [
                                                     Row(

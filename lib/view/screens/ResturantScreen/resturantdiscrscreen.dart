@@ -31,39 +31,22 @@ class ResturantDescScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(bottom: 15),
           ),
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Hero(
-                tag: controller.i,
-                child: Image.network(
-                  controller.listresturantDetailes[controller.i].image!,
-                  height: 180,
-                  width: Get.width,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
+          SizedBox(
+            child: Hero(
+              tag: controller.i,
+              child: Image.network(
+                controller.listresturantDetailes[controller.i].image!,
                 height: 180,
                 width: Get.width,
-                child: Text(
-                  translationData(
-                      controller.listresturantDetailes[controller.i].nameAr,
-                      controller.listresturantDetailes[controller.i].name),
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: AppColors.whiteColor, fontSize: 25),
-                ),
-              )
-            ],
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 7),
             child: Column(
               children: [
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -75,37 +58,46 @@ class ResturantDescScreen extends StatelessWidget {
                               .listresturantDetailes[controller.i].address),
                     ),
                     const SizedBox(
-                      width: 10,
-                    ),
-                    const CustomTextSubTileResturant(
-                      subtitle: ".",
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    CustomTextSubTileResturant(
-                      subtitle:
-                          controller.listresturantDetailes[controller.i].phone!,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const CustomTextSubTileResturant(
-                      subtitle: ".",
-                    ),
-                    const SizedBox(
-                      width: 10,
+                      width: 3,
+                      height: 10,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        CustomTextSubTileResturant(
-                          subtitle: controller
-                              .listresturantDetailes[controller.i].openingTime!,
+                        Row(
+                          children: [
+                            const Text("Mobile: "),
+                            CustomTextSubTileResturant(
+                              subtitle: controller
+                                  .listresturantDetailes[controller.i].phone!,
+                            ),
+                          ],
                         ),
-                        const Text(" - "),
-                        CustomTextSubTileResturant(
-                          subtitle: controller
-                              .listresturantDetailes[controller.i].closingTime!,
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        const CustomTextSubTileResturant(
+                          subtitle: ".",
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Open: "),
+                            CustomTextSubTileResturant(
+                              subtitle: controller
+                                  .listresturantDetailes[controller.i]
+                                  .openingTime!,
+                            ),
+                            const Text(" - "),
+                            CustomTextSubTileResturant(
+                              subtitle: controller
+                                  .listresturantDetailes[controller.i]
+                                  .closingTime!,
+                            ),
+                          ],
                         ),
                       ],
                     ),

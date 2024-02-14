@@ -38,6 +38,7 @@ class AppRoutsName {
   static String order = "/YourOrders";
   static String checkOut = "/checkOut";
   static String orderId = "/orderId";
+  static String trackingOrder = "/trackingOrder";
 
   // categories
   static String bottmapbarcategories = "/CustomCategoriesBotomApbar";

@@ -33,10 +33,21 @@ class OrdersData {
       "table_reservation": tablereservation,
       "reservation_time": reservationtime,
       "with_delivery": withdelivery,
-      "user_address_id": userAddressId
+      "user_addresses_id": userAddressId
     }, {
       "Authorization": "Bearer $token"
     });
+    return response.fold((l) => l, (r) => r);
+  }
+
+  detailsOrders(
+    String orderId,
+  ) async {
+    var token = myServices.sharedPreferences.get("token").toString();
+    var response = await crud.getData(
+      "https://mo.mymealon.com/public/api/order-user-details/$orderId",
+      {"Authorization": "Bearer $token"},
+    );
     return response.fold((l) => l, (r) => r);
   }
 }

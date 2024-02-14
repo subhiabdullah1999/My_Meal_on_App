@@ -22,13 +22,9 @@ class AppImages {
 
   // home images
   static const String notificationIcon = "$rootImages/notiIcon.png";
-  static const String foodresturant = "$rootImages/foodres.png";
   static const String clok = "$rootImages/Vector.png";
-  static const String banner = "$rootImages/Banner.png";
-
   //Home bottomtabbar
   static const String homeIcon = "$rootImages/iconhome.png";
-  static const String chatIcon = "$rootImages/chat.png";
 
   // address
   static const String locationicon = "$rootImages/location.png";

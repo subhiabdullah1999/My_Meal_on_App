@@ -1,7 +1,9 @@
 import 'package:My_Meal_on/core/class/statusRequest.dart';
+import 'package:My_Meal_on/core/constans/appNameRouts.dart';
 import 'package:My_Meal_on/core/functions/handlingdatacontroller.dart';
 import 'package:My_Meal_on/core/services/services.dart';
 import 'package:My_Meal_on/data/datasource/remote/orders/all_orders.dart';
+import 'package:My_Meal_on/data/model/orders/order_deta_model.dart';
 import 'package:My_Meal_on/data/model/orders/past_order_model.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,7 @@ abstract class OrdersIdController extends GetxController {
   goBack();
 
   getOrderResId();
+  goToTrackingOrder();
 }
 
 class OrdersIdControllerImp extends OrdersIdController {
@@ -17,7 +20,12 @@ class OrdersIdControllerImp extends OrdersIdController {
   MyServices myServices = Get.find();
 
   List<PastOrderModel> data = [];
+  List dataresponse = [];
+  List dataresponseorder = [];
+  List<OrderDetaModel> listOrderDeta = [];
+
   Map dataRes = {};
+  String? orderId;
 
   late String resturantId;
 
@@ -36,13 +44,16 @@ class OrdersIdControllerImp extends OrdersIdController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
         print("dddddddddddddddd");
-        List dataresponse = response["data"]['carts'];
+        dataresponse.clear();
+
+        dataresponse = response["data"]['carts'];
+
         dataRes = response["data"];
         print(dataresponse);
-        print("ddddddddffffffffffffffffff");
 
         data.addAll(dataresponse.map((e) => PastOrderModel.fromJson(e)));
-        dataresponse.clear();
+        listOrderDeta
+            .addAll(dataresponse.map((e) => OrderDetaModel.fromJson(e)));
 
         update();
       } else {
@@ -62,5 +73,13 @@ class OrdersIdControllerImp extends OrdersIdController {
     await getOrderResId();
 
     super.onInit();
+  }
+
+  @override
+  goToTrackingOrder() {
+    Get.toNamed(
+      AppRoutsName.trackingOrder,
+      arguments: {"orderId": orderId},
+    );
   }
 }

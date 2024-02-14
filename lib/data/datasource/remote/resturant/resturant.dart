@@ -14,18 +14,20 @@ class ResturantData {
     return response.fold((l) => l, (r) => r);
   }
 
-  allFoodInResturantData(String restaurantId) async {
+  allFoodInResturantData(String restaurantId, String catId) async {
     var token = myServices.sharedPreferences.get("token").toString();
     var response = await crud.getData(
         "https://mo.mymealon.com/public/api/foods/$restaurantId",
-        {"Authorization": "Bearer $token"});
+        {"Authorization": "Bearer $token", "subcategories": catId});
     return response.fold((l) => l, (r) => r);
   }
 
-  allFoodInSubCategoriestData(String restaurantId, String catId) async {
+  allFoodInSubCategoriestData(
+    String restaurantId,
+  ) async {
     var token = myServices.sharedPreferences.get("token").toString();
     var response = await crud.getData(
-        "https://mo.mymealon.com/public/api/filter-foods-restaurant/$restaurantId/$catId",
+        "https://mo.mymealon.com/public/api/filter-foods-restaurant/$restaurantId",
         {"Authorization": "Bearer $token"});
     return response.fold((l) => l, (r) => r);
   }

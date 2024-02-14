@@ -38,7 +38,7 @@ class HomeControllerImp extends HomeController {
   late String phone;
   late String id;
   late String password;
-  String categoriesId = "1";
+  String? categoriesId = "";
   int? idprud;
   bool isLoad = false;
 
@@ -93,6 +93,8 @@ class HomeControllerImp extends HomeController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == 'success') {
         data.addAll(response['data']['subCategories']);
+        categoriesId = data[0]["id"].toString();
+        update();
       } else {
         statusRequest = StatusRequest.faliure;
       }
@@ -133,7 +135,7 @@ class HomeControllerImp extends HomeController {
   @override
   void onInit() {
     getCategoriesData();
-    getSubCategoriesDescr(categoriesId);
+    getSubCategoriesDescr("7");
     getReturantsData();
     getSliderOffers();
     // gethomeData();

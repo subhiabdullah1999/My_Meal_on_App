@@ -3,6 +3,7 @@ import 'package:My_Meal_on/core/localization/translation.dart';
 import 'package:My_Meal_on/core/services/services.dart';
 import 'package:My_Meal_on/routs.dart';
 import 'package:My_Meal_on/view/binding.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
@@ -10,6 +11,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await initialServices();
 
   runApp(const MyApp());

@@ -1,20 +1,15 @@
 import 'package:My_Meal_on/controller/forgetpassword/forgetcontroller.dart';
 import 'package:My_Meal_on/core/class/handlingdata.dart';
-import 'package:My_Meal_on/core/class/loading.dart';
-import 'package:My_Meal_on/core/class/statusRequest.dart';
 import 'package:My_Meal_on/core/constans/appColors.dart';
 import 'package:My_Meal_on/core/constans/appNameRouts.dart';
 import 'package:My_Meal_on/core/functions/validinput.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customDiscText.dart';
-import 'package:My_Meal_on/view/widget/authWedgits/customLogoWidget.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customTextFormAuth.dart';
-
+import 'package:My_Meal_on/view/widget/authWedgits/custom_number_mobile_form.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/custombuttonauth.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customtextforgetpass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../widget/authWedgits/customveryfiphone.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
@@ -59,7 +54,11 @@ class ForgetPassword extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      CustomTextFormAuthWidget(
+                      CustomNumberMobileWidget(
+                          fullNumber: (val) {
+                            controller.fullphonenumber = val!.completeNumber;
+                            print(controller.fullphonenumber);
+                          },
                           valid: (valeu) {
                             return validInput(valeu!, 3, 30, "phone");
                           },

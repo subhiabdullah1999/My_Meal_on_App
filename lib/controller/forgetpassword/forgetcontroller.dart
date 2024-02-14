@@ -16,6 +16,8 @@ class ForgetControllerImp extends ForgetController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   CheckPhoneNumberData checkPhoneNumberData = CheckPhoneNumberData(Get.find());
   late TextEditingController phonenumber;
+  String? fullphonenumber;
+
   StatusRequest statusRequest = StatusRequest.none;
   @override
   checkNumber() async {
@@ -23,7 +25,7 @@ class ForgetControllerImp extends ForgetController {
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = await checkPhoneNumberData.postData(phonenumber.text);
+      var response = await checkPhoneNumberData.postData(fullphonenumber!);
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {

@@ -14,7 +14,7 @@ class CustomResturantsContainer extends StatelessWidget {
     return GetBuilder<HomeControllerImp>(
         builder: (controller) => Container(
               padding: const EdgeInsets.only(top: 10),
-              height: 260,
+              height: 255,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: ((context, index) {
@@ -27,147 +27,153 @@ class CustomResturantsContainer extends StatelessWidget {
                       },
                       child: Hero(
                         tag: controller.listHomeModel[index],
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(color: AppColors.whiteColor)
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                height: 120,
-                                width: 270,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                          controller.listResturant[index]
-                                              ["image"],
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [
+                                    BoxShadow(color: AppColors.whiteColor)
+                                  ]),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    height: 120,
+                                    width: 270,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                              controller.listResturant[index]
+                                                  ["image"],
+                                            ),
+                                            fit: BoxFit.cover),
+                                        color: Colors.black12,
+                                        borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(15),
+                                            topRight: Radius.circular(15))),
+                                  ),
+                                  Container(
+                                    width: 250,
+                                    margin: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(20),
+                                            bottomRight: Radius.circular(20))),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          translationData(
+                                              controller.listResturant[index]
+                                                  ["name_ar"],
+                                              controller.listResturant[index]
+                                                  ["name"]),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.blackColors,
+                                                  fontWeight: FontWeight.w400),
                                         ),
-                                        fit: BoxFit.cover),
-                                    color: Colors.black12,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15))),
-                              ),
-                              Container(
-                                width: 250,
-                                margin: const EdgeInsets.all(10),
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(20),
-                                        bottomRight: Radius.circular(20))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      translationData(
-                                          controller.listResturant[index]
-                                              ["name_ar"],
-                                          controller.listResturant[index]
-                                              ["name"]),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: AppColors.blackColors,
-                                              fontWeight: FontWeight.w400),
+                                        Text(
+                                          translationData(
+                                              controller.listResturant[index]
+                                                  ['address_ar'],
+                                              controller.listResturant[index]
+                                                  ['address']),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.gry4,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 16),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      translationData(
-                                          controller.listResturant[index]
-                                              ['address_ar'],
-                                          controller.listResturant[index]
-                                              ['address']),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: AppColors.gry4,
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 3,
+                              left: 12,
+                              right: 12,
+                              child: Container(
+                                padding: const EdgeInsets.all(7),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: AppColors.whiteColor4),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Image(
+                                      image: AssetImage(AppImages.clok),
+                                      height: 25,
                                     ),
                                     const SizedBox(
-                                      height: 10,
+                                      width: 5,
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.all(7),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: AppColors.whiteColor4),
-                                      child: Row(
-                                        children: [
-                                          const Image(
-                                            image: AssetImage(AppImages.clok),
-                                            height: 25,
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            "open now",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: AppColors.green,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 17),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                controller.listResturant[index]
-                                                    ['opening_time'],
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: AppColors.gry4,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                        fontSize: 13),
-                                              ),
-                                              Text(
-                                                " - ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: AppColors.gry4,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                        fontSize: 13),
-                                              ),
-                                              Text(
-                                                controller.listResturant[index]
-                                                    ['closing_time'],
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        color: AppColors.gry4,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                        fontSize: 13),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                    Text(
+                                      "open now",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: AppColors.green,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          controller.listResturant[index]
+                                              ['opening_time'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.gry4,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 13),
+                                        ),
+                                        Text(
+                                          " - ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.gry4,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 13),
+                                        ),
+                                        Text(
+                                          controller.listResturant[index]
+                                              ['closing_time'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  color: AppColors.gry4,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 13),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     );

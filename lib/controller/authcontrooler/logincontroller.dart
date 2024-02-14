@@ -8,6 +8,8 @@ import 'package:My_Meal_on/core/services/services.dart';
 import 'package:My_Meal_on/data/datasource/remote/authdata/lodindata.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class LogInController extends GetxController {
   backButton();
@@ -22,6 +24,11 @@ class LogInControllerImp extends LogInController {
 
   late TextEditingController phonenumber;
   late TextEditingController password;
+  String? fullphonenumber;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  FirebaseMessaging fcm = FirebaseMessaging.instance;
+  String? firToken;
 
   MyServices myServices = Get.find();
 
@@ -51,7 +58,8 @@ class LogInControllerImp extends LogInController {
       statusRequest = StatusRequest.loading;
 
       update();
-      var response = await loginData.postData(phonenumber.text, password.text);
+      var response =
+          await loginData.postData(fullphonenumber!, password.text, firToken!);
       statusRequest = handlingData(response);
 
       if (StatusRequest.success == statusRequest) {
@@ -123,6 +131,9 @@ class LogInControllerImp extends LogInController {
   void onInit() {
     phonenumber = TextEditingController();
     password = TextEditingController();
+    fcm.getToken().then((token) {
+      firToken = token!;
+    });
     // internetData();
 
     super.onInit();

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478681708233",
+    "project_id": "mymailon-7f5a9",
+    "storage_bucket": "mymailon-7f5a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478681708233:android:0a691fa87cac4497bf3f18",
+        "android_client_info": {
+          "package_name": "com.example.my_meal_on"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuNSEguB4sO_jwylYKEEzHqSXE6jI-eFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

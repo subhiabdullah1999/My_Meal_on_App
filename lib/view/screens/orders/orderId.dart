@@ -1,7 +1,9 @@
 import 'package:My_Meal_on/controller/yororders/orders_id_controller.dart';
 import 'package:My_Meal_on/core/class/handlingdata.dart';
 import 'package:My_Meal_on/core/constans/appColors.dart';
+import 'package:My_Meal_on/core/constans/appNameRouts.dart';
 import 'package:My_Meal_on/core/functions/translation_datbase.dart';
+import 'package:My_Meal_on/view/widget/authWedgits/custombuttonauth.dart';
 import 'package:My_Meal_on/view/widget/home/customdevider.dart';
 import 'package:My_Meal_on/view/widget/settings/customBackIcon.dart';
 import 'package:My_Meal_on/view/widget/settings/customtitle.dart';
@@ -17,85 +19,90 @@ class OrderId extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: GetBuilder<OrdersIdControllerImp>(
-        builder: (controller) => Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "price".tr,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+        builder: (controller) => Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "price".tr,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                    Text(
+                      controller.dataRes["sub total"].toString(),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                  Text(
-                    controller.dataRes["sub total"].toString(),
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.oraColor),
-                  ),
-                ],
+                          color: AppColors.oraColor),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "delivery".tr,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "delivery".tr,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                    Text(
+                      controller.dataRes["delivery"].toString(),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                  Text(
-                    controller.dataRes["delivery"].toString(),
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.oraColor),
-                  ),
-                ],
+                          color: AppColors.oraColor),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22, vertical: 5),
-              child: CustomDevider(),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 22, vertical: 5),
+                child: CustomDevider(),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "price total".tr,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "price total".tr,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                    Text(
+                      controller.dataRes["order total"].toString(),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                  Text(
-                    controller.dataRes["order total"].toString(),
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.oraColor),
-                  ),
-                ],
+                          color: AppColors.oraColor),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: Container(
@@ -137,92 +144,46 @@ class OrderId extends StatelessWidget {
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 1,
-                                childAspectRatio: 3,
+                                childAspectRatio: 2.5,
                               ),
                               itemCount: controller.data.length,
                               itemBuilder: (context, index) {
-                                return Stack(children: [
-                                  Card(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 113,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              image: DecorationImage(
-                                                  image: NetworkImage(controller
-                                                      .data[index].foodImage!),
-                                                  fit: BoxFit.cover)),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: ListTile(
-                                            title: Text(
-                                              translationData(
-                                                  controller
-                                                      .data[index].foodNameAr,
-                                                  controller
-                                                      .data[index].foodName),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleMedium!
-                                                  .copyWith(
-                                                      color:
-                                                          AppColors.blackColor3,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w300),
+                                return Stack(
+                                    clipBehavior: Clip.hardEdge,
+                                    children: [
+                                      Card(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20),
+                                              height: 113,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          controller.data[index]
+                                                              .foodImage!),
+                                                      fit: BoxFit.cover)),
                                             ),
-                                            trailing: Column(
-                                              children: [
-                                                Text(
-                                                  controller.data[index].price!,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium!
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .oraColor,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w300),
-                                                ),
-                                              ],
+                                            const SizedBox(
+                                              width: 10,
                                             ),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
+                                            Expanded(
+                                              child: ListTile(
+                                                title: Text(
                                                   translationData(
                                                       controller.data[index]
-                                                          .restaurantNameAr,
+                                                          .foodNameAr,
                                                       controller.data[index]
-                                                          .restaurantName),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium!
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .blackColor3,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w300),
-                                                ),
-                                                Text(
-                                                  translationData(
-                                                      controller.data[index]
-                                                          .restaurantAddressAr,
-                                                      controller.data[index]
-                                                          .restaurantAddress),
+                                                          .foodName),
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .titleMedium!
@@ -233,41 +194,142 @@ class OrderId extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w300),
                                                 ),
-                                              ],
+                                                trailing: Column(
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                          .data[index].price!,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium!
+                                                          .copyWith(
+                                                              color: AppColors
+                                                                  .oraColor,
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300),
+                                                    ),
+                                                  ],
+                                                ),
+                                                subtitle: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Text(
+                                                        translationData(
+                                                            controller
+                                                                .data[index]
+                                                                .restaurantNameAr,
+                                                            controller
+                                                                .data[index]
+                                                                .restaurantName),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleMedium!
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .blackColor3,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w300),
+                                                      ),
+                                                    ),
+                                                    // Text(
+                                                    //   translationData(
+                                                    //       controller.data[index]
+                                                    //           .restaurantAddressAr,
+                                                    //       controller.data[index]
+                                                    //           .restaurantAddress),
+                                                    //   style: Theme.of(context)
+                                                    //       .textTheme
+                                                    //       .titleMedium!
+                                                    //       .copyWith(
+                                                    //           color: AppColors
+                                                    //               .blackColor3,
+                                                    //           fontSize: 20,
+                                                    //           fontWeight:
+                                                    //               FontWeight.w300),
+                                                    // ),
+                                                  ],
+                                                ),
+                                              ),
                                             ),
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 10,
+                                        left: controller.myServices
+                                                    .sharedPreferences
+                                                    .getString("lang") ==
+                                                "ar"
+                                            ? 10
+                                            : null,
+                                        right: controller.myServices
+                                                    .sharedPreferences
+                                                    .getString("lang") ==
+                                                "ar"
+                                            ? null
+                                            : 10,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              AppColors.whiteColor4,
+                                          radius: 25,
+                                          child: Text(
+                                            controller.data[index].amount
+                                                .toString(),
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                color: AppColors.blackColor3,
+                                                fontWeight: FontWeight.w400),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 10,
-                                    left: controller
-                                                .myServices.sharedPreferences
-                                                .getString("lang") ==
-                                            "ar"
-                                        ? 10
-                                        : null,
-                                    right: controller
-                                                .myServices.sharedPreferences
-                                                .getString("lang") ==
-                                            "ar"
-                                        ? null
-                                        : 10,
-                                    child: CircleAvatar(
-                                      backgroundColor: AppColors.whiteColor4,
-                                      radius: 25,
-                                      child: Text(
-                                        controller.data[index].amount
-                                            .toString(),
-                                        style: const TextStyle(
-                                            fontSize: 18,
-                                            color: AppColors.blackColor3,
-                                            fontWeight: FontWeight.w400),
                                       ),
-                                    ),
-                                  )
-                                ]);
+                                      Positioned(
+                                          bottom: 10,
+                                          left: controller.myServices
+                                                      .sharedPreferences
+                                                      .getString("lang") ==
+                                                  "ar"
+                                              ? 65
+                                              : null,
+                                          right: controller.myServices
+                                                      .sharedPreferences
+                                                      .getString("lang") ==
+                                                  "ar"
+                                              ? null
+                                              : 65,
+                                          child: InkWell(
+                                            onTap: () {
+                                              controller.orderId = controller
+                                                  .listOrderDeta[index]
+                                                  .orders![index]
+                                                  .orderId
+                                                  .toString();
+                                              controller.goToTrackingOrder();
+                                            },
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 15,
+                                                      vertical: 10),
+                                              decoration: BoxDecoration(
+                                                  color: AppColors.oraColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              child: Text(
+                                                "order tracking".tr,
+                                                style: const TextStyle(
+                                                    color: AppColors.whiteColor,
+                                                    fontSize: 20),
+                                              ),
+                                            ),
+                                          ))
+                                    ]);
                               }),
                     ))
           ],

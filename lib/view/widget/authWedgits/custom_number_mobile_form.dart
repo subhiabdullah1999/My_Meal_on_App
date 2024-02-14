@@ -1,21 +1,25 @@
 import 'package:My_Meal_on/core/constans/appColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
-class CustomTextFormAuthWidget extends StatelessWidget {
+class CustomNumberMobileWidget extends StatelessWidget {
   final String? hintText;
   final IconData? iconData;
   final IconData? suffixicon;
+  final String? codeCuntry;
 
   final TextInputType? keyboardType;
   final TextEditingController? mycontroller;
   final String? Function(String?)? valid;
-
   final void Function()? ontapIcon;
 
   final bool? obsc;
 
-  const CustomTextFormAuthWidget(
+  final void Function(PhoneNumber?)? fullNumber;
+
+  const CustomNumberMobileWidget(
       {super.key,
       this.hintText,
       this.iconData,
@@ -24,18 +28,22 @@ class CustomTextFormAuthWidget extends StatelessWidget {
       required this.valid,
       this.obsc,
       this.ontapIcon,
-      this.suffixicon});
+      this.suffixicon,
+      this.codeCuntry,
+      required this.fullNumber});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      child: TextFormField(
+      child: IntlPhoneField(
+        onChanged: fullNumber,
+        initialCountryCode: "IQ",
         cursorColor: AppColors.oraColor,
         obscureText: obsc == null || obsc == false ? false : true,
-        validator: valid,
+        // validator: valid,
         controller: mycontroller,
-        keyboardType: keyboardType,
+        // keyboardType: keyboardType,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           hintText: hintText!.tr,

@@ -24,6 +24,7 @@ import 'package:My_Meal_on/view/screens/notification/notification.dart';
 import 'package:My_Meal_on/view/screens/onboarding/onBoarding.dart';
 import 'package:My_Meal_on/view/screens/orders/check%20_out.dart';
 import 'package:My_Meal_on/view/screens/orders/orderId.dart';
+import 'package:My_Meal_on/view/screens/orders/trackingOrder.dart';
 import 'package:My_Meal_on/view/screens/orders/your_orders.dart';
 import 'package:My_Meal_on/view/screens/profile/chanepassword.dart';
 import 'package:My_Meal_on/view/screens/profile/editprofile.dart';
@@ -42,7 +43,7 @@ import 'view/screens/categories/categoriesdiscbotmappbar.dart';
 List<GetPage<dynamic>>? routes = [
   // GetPage(
   //   name: "/",
-  //   page: () => const CustomBottomNavBar(),
+  //   page: () => const Home(),
   // ),
   GetPage(
     name: "/",
@@ -104,4 +105,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutsName.checkOut, page: () => const CheckOut()),
   GetPage(name: AppRoutsName.orderId, page: () => const OrderId()),
   GetPage(name: AppRoutsName.aboutUs, page: () => const AboutUs()),
+  GetPage(name: AppRoutsName.trackingOrder, page: () => const Trackingorder()),
 ];

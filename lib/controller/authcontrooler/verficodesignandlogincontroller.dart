@@ -1,3 +1,4 @@
+import 'package:My_Meal_on/controller/authcontrooler/signupcontroller.dart';
 import 'package:My_Meal_on/core/class/statusRequest.dart';
 import 'package:My_Meal_on/core/constans/appNameRouts.dart';
 import 'package:My_Meal_on/data/datasource/remote/authdata/verifycodesinupandlogin.dart';
@@ -17,6 +18,7 @@ abstract class VeryfiCodeSignAndLogInController extends GetxController {
 
 class VeryfiCodeSignAndLogInControllerImp
     extends VeryfiCodeSignAndLogInController {
+  SignUpControllerImp controllerImp = Get.put(SignUpControllerImp());
   String? phonenumber;
   @override
   checkCode() {}

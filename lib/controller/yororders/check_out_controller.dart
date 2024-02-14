@@ -127,7 +127,6 @@ class CheckOutControllerImp extends CheckOutController {
     statusRequest = handlingData(response);
 
     if (StatusRequest.success == statusRequest) {
-      print("ttrfggggggggggggggggggggggggggggggsssddd");
       if (response['status'] == 'success') {
         Get.bottomSheet(BottomSheet(
             backgroundColor: Colors.transparent,
@@ -263,11 +262,6 @@ class CheckOutControllerImp extends CheckOutController {
     viewAddress();
     hours = TextEditingController();
     restaurantId = Get.arguments["restaurantId"];
-    print("dfssssssssssssssssssssssssssssssssssaaaaaaaaaaaaa");
-    print(restaurantId);
-
-    print("dfssssssssssssssssssssssssssssssssssaaaaaaaaaaaaa");
-
     super.onInit();
   }
 }

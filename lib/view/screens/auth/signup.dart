@@ -1,13 +1,12 @@
 import 'package:My_Meal_on/controller/authcontrooler/signupcontroller.dart';
 import 'package:My_Meal_on/core/class/handlingdata.dart';
-import 'package:My_Meal_on/core/class/loading.dart';
-import 'package:My_Meal_on/core/class/statusRequest.dart';
 import 'package:My_Meal_on/core/constans/appColors.dart';
 import 'package:My_Meal_on/core/functions/alertdialogexitapp.dart';
 import 'package:My_Meal_on/core/functions/validinput.dart';
 import 'package:My_Meal_on/core/services/services.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customLogoWidget.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customTextFormAuth.dart';
+import 'package:My_Meal_on/view/widget/authWedgits/custom_number_mobile_form.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/custombuttonSigninSignUP.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/custombuttonauth.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customtextsignup.dart';
@@ -24,27 +23,6 @@ class SignUp extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.whiteColor,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0.0,
-      //   title: Text(
-      //     "signup".tr,
-      //     style: Theme.of(context)
-      //         .textTheme
-      //         .titleLarge!
-      //         .copyWith(color: AppColors.blackColor),
-      //   ),
-      //   centerTitle: true,
-      //   leading: IconButton(
-      //       onPressed: () {
-      //         controllerImp.backButton();
-      //       },
-      //       icon: const Icon(
-      //         Icons.arrow_back_ios,
-      //         color: AppColors.blackColor,
-      //         size: 30,
-      //       )),
-      // ),
       body: WillPopScope(
           onWillPop: alertDialogExitApp,
           child: GetBuilder<SignUpControllerImp>(
@@ -110,13 +88,21 @@ class SignUp extends StatelessWidget {
                       ),
                       CustomTextFormAuthWidget(
                           valid: (valeu) {
-                            return validInput(valeu!, 2, 40, "username");
+                            if (valeu!.length < 2 || valeu.length > 40) {
+                              return "valid_username".tr;
+                            }
+                            ;
                           },
                           mycontroller: controllerImp.userName,
                           keyboardType: TextInputType.name,
                           hintText: "your_name",
                           iconData: Icons.person_2_outlined),
-                      CustomTextFormAuthWidget(
+                      CustomNumberMobileWidget(
+                          fullNumber: (val) {
+                            controllerImp.fullphonenumber =
+                                val!.completeNumber.toString();
+                            print(controllerImp.fullphonenumber);
+                          },
                           valid: (valeu) {
                             return validInput(valeu!, 3, 30, "phone");
                           },

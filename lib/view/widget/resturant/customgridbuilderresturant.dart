@@ -58,38 +58,48 @@ class CustomGridBuilderResturant extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: Text(
-                            translationData(
-                                controller.listResturant[index]['name_ar'],
-                                controller.listResturant[index]['name']),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    color: AppColors.blackColor3,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w400),
-                          ),
-                          subtitle: Column(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Flexible(
+                                child: Text(
+                                  translationData(
+                                      controller.listResturant[index]
+                                          ['name_ar'],
+                                      controller.listResturant[index]['name']),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                          color: AppColors.blackColor3,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w400),
+                                ),
+                              ),
                               Row(
                                 children: [
-                                  CustomTextSubTileResturant(
-                                    subtitle: translationData(
-                                        controller.listResturant[index]
-                                            ['address_ar'],
-                                        controller.listResturant[index]
-                                            ['address']),
-                                  ),
-                                  CustomTextSubTileResturant(
-                                    subtitle: ".       ",
-                                  ),
                                   const Text("Mobile: "),
                                   CustomTextSubTileResturant(
                                     subtitle: controller.listResturant[index]
                                         ['phone'],
                                   ),
                                 ],
+                              )
+                            ],
+                          ),
+                          subtitle: Column(
+                            children: [
+                              SizedBox(
+                                height: 7,
+                              ),
+                              CustomTextSubTileResturant(
+                                subtitle: translationData(
+                                    controller.listResturant[index]
+                                        ['address_ar'],
+                                    controller.listResturant[index]['address']),
+                              ),
+                              CustomTextSubTileResturant(
+                                subtitle: ".       ",
                               ),
                               Row(
                                 children: [

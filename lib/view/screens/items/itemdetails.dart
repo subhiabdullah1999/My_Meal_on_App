@@ -71,6 +71,7 @@ class ItemDetails extends StatelessWidget {
                           ),
                           ListTile(
                             title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Flexible(
                                   child: Text(

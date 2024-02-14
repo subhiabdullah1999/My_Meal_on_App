@@ -13,6 +13,8 @@ import 'package:My_Meal_on/view/widget/authWedgits/customtextsignup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widget/authWedgits/custom_number_mobile_form.dart';
+
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
 
@@ -83,7 +85,12 @@ class LogIn extends StatelessWidget {
                               )
                             ],
                           ),
-                          CustomTextFormAuthWidget(
+                          CustomNumberMobileWidget(
+                              fullNumber: (val) {
+                                controller.fullphonenumber =
+                                    val!.completeNumber;
+                                print(controller.fullphonenumber);
+                              },
                               valid: (valeu) {
                                 return validInput(valeu!, 3, 20, "phone");
                               },

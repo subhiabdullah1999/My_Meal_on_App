@@ -5,8 +5,10 @@ import 'package:My_Meal_on/core/functions/alertdialogexitapp.dart';
 import 'package:My_Meal_on/core/functions/handlingdatacontroller.dart';
 import 'package:My_Meal_on/core/services/services.dart';
 import 'package:My_Meal_on/data/datasource/remote/authdata/signupdata.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 abstract class SinUpController extends GetxController {
   backButton();
@@ -19,8 +21,14 @@ class SignUpControllerImp extends SinUpController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   late TextEditingController userName;
   late TextEditingController phonenumber;
+  String? fullphonenumber;
   late TextEditingController password;
   late TextEditingController repassword;
+
+  String? codeFirebase;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseMessaging fcm = FirebaseMessaging.instance;
 
   MyServices myServices = Get.find();
 
@@ -28,6 +36,9 @@ class SignUpControllerImp extends SinUpController {
   List data = [];
 
   bool isShowwPassword = true;
+  String? verficode;
+
+  String? firToken;
 
   showPassword() {
     isShowwPassword = isShowwPassword == false ? true : false;
@@ -44,16 +55,54 @@ class SignUpControllerImp extends SinUpController {
     Get.offNamed(AppRoutsName.login);
   }
 
+  // void phoneAuth() async {
+  //   await FirebaseAuth.instance.verifyPhoneNumber(
+  //     phoneNumber: fullphonenumber,
+  //     verificationCompleted: (PhoneAuthCredential credential) {},
+  //     verificationFailed: (FirebaseAuthException e) {},
+  //     codeSent: (String verificationId, int? resendToken) async {
+  //       verficode = verificationId;
+  //     },
+  //     codeAutoRetrievalTimeout: (String verificationId) {},
+  //   );
+  //   print("donnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+  // }
+
+  verfiCode() async {
+    print("rrrrryyyyyyyyyyyyy");
+    print(codeFirebase);
+    print("rrrrryyyyyyyyyyyyy");
+
+    //   try {
+    //     String smsCode = codeFirebase!;
+
+    //     // Create a PhoneAuthCredential with the code
+    //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+    //         verificationId: verficode!, smsCode: smsCode);
+
+    //     // Sign the user in (or link) with the credential
+    //     await auth.signInWithCredential(credential);
+    //     print("fddddddddddddddddddd");
+    //     print("sucssesssssssssssss");
+    //   } catch (e) {
+    //     print("rrrrrrrrrrrrrrrrrrrrr");
+    //     print(e.toString());
+    //     print("rrrrrrrrrrrrrrrrrrrrr");
+    //   }
+  }
+
   @override
   signUp() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = await signUpData.postData(
-          userName.text, phonenumber.text, password.text, repassword.text);
+      var response = await signUpData.postData(userName.text, fullphonenumber!,
+          password.text, repassword.text, firToken!);
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
+        print("ddddddddddsssssssssssssssss");
+        print(firToken);
         if (response['status'] == 'success') {
           myServices.sharedPreferences
               .setString("token", response['data']['token'].toString());
@@ -67,9 +116,14 @@ class SignUpControllerImp extends SinUpController {
           myServices.sharedPreferences.setString(
               "password", response['data']['user']["password"].toString());
           myServices.sharedPreferences.setString("step", "2");
-          Get.offNamed(AppRoutsName.veryfiCodeSignAndLogIn, arguments: {
-            "phonenumber": phonenumber.text,
-          });
+
+          // phoneAuth();
+
+          // Get.offNamed(AppRoutsName.veryfiCodeSignAndLogIn, arguments: {
+          //   "phonenumber": fullphonenumber,
+          // });
+
+          Get.offNamed(AppRoutsName.homebuttonApbar);
         } else {
           Get.defaultDialog(
             titlePadding: const EdgeInsets.all(10),
@@ -100,6 +154,9 @@ class SignUpControllerImp extends SinUpController {
     phonenumber = TextEditingController();
     password = TextEditingController();
     repassword = TextEditingController();
+    fcm.getToken().then((token) {
+      firToken = token!;
+    });
 
     super.onInit();
   }

@@ -261,6 +261,13 @@ class MyTranslation extends Translations {
               "لقد قدمت الطلب بنجاح. سوف تحصل على طعامك في غضون 25 دقيقة. شكرا لاستخدام خدماتنا. استمتع بطعامك",
           "The table has been booked successfully. Please come on time. We thank you for your trust.":
               "تم حجز الطاولة بنجاح .. نرجو الحضور في الموعد المحدد ..نشكر ثقتكم .",
+          "All over Iraq": "كل انحاء العراق",
+          "order tracking": "تتبع ",
+          "The meal is being prepared": "الوجبة قيد التحضير",
+          "order has been prepared": "تم تجهيز الطلبية",
+          "order is on the way": "الطلبية على الطريق",
+          "order has been delivered": "تم تسليم الطلبية",
+          "no Email": "لا يوجد ايميل"
         },
         "en": {
           "nameApp": "My Meal On",
@@ -530,6 +537,13 @@ class MyTranslation extends Translations {
               "You placed the order successfully. You will get your food within 25 minutes. Thanks for using our services. Enjoy your food",
           "The table has been booked successfully. Please come on time. We thank you for your trust.":
               "The table has been booked successfully. Please come on time. We thank you for your trust.",
+          "All over Iraq": "All over Iraq",
+          "order tracking": "tracking",
+          "The meal is being prepared": "The meal is being prepared",
+          "order has been prepared": "order has been prepared",
+          "order is on the way": "order is on the way",
+          "order has been delivered": " order has been delivered",
+          "no Email": "No Email"
         }
       };
 }

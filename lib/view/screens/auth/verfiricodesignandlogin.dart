@@ -1,11 +1,7 @@
 import 'package:My_Meal_on/controller/authcontrooler/verficodesignandlogincontroller.dart';
 import 'package:My_Meal_on/core/class/handlingdata.dart';
-import 'package:My_Meal_on/core/class/loading.dart';
-import 'package:My_Meal_on/core/class/statusRequest.dart';
 import 'package:My_Meal_on/core/constans/appColors.dart';
-import 'package:My_Meal_on/core/constans/appNameRouts.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customDiscText.dart';
-import 'package:My_Meal_on/view/widget/authWedgits/customLogoWidget.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/custombuttonauth.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customforgetpassword.dart';
 import 'package:My_Meal_on/view/widget/authWedgits/customtextsignup.dart';
@@ -56,7 +52,7 @@ class VerFiriCodeSignAndLOgIn extends StatelessWidget {
                       ),
                       CustomOTPText(
                         submite: (String codver) {
-                          controller.goToHome(codver);
+                          controller.controllerImp.verfiCode();
                         },
                       ),
                       const SizedBox(

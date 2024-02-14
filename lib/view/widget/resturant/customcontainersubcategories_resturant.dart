@@ -23,7 +23,7 @@ class CustomContainerSubCatResturant extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(bottom: 35),
         child: GetBuilder<ResturantDiscControllerImp>(
-          builder: (controller) => controller.listFoodSub.isEmpty
+          builder: (controller) => controller.listAllFoodInRest.isEmpty
               ? Card(
                   child: Container(
                   height: 100,
@@ -57,7 +57,7 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                               Expanded(
                                 flex: 2,
                                 child: Hero(
-                                  tag: controller.listFoodSub[index],
+                                  tag: controller.listAllFoodInRest[index],
                                   child: Container(
                                       height: 115,
                                       width: 115,
@@ -65,8 +65,8 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                            controller
-                                                .listFoodSub[index].image!,
+                                            controller.listAllFoodInRest[index]
+                                                .image!,
                                           ),
                                           fit: BoxFit.cover,
                                         ),
@@ -78,8 +78,10 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                                 child: ListTile(
                                     title: Text(
                                       translationData(
-                                          controller.listFoodSub[index].nameAr,
-                                          controller.listFoodSub[index].name),
+                                          controller
+                                              .listAllFoodInRest[index].nameAr,
+                                          controller
+                                              .listAllFoodInRest[index].name),
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
@@ -106,10 +108,12 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                                                 Text(
                                                   translationData(
                                                       controller
-                                                          .listFoodSub[index]
+                                                          .listAllFoodInRest[
+                                                              index]
                                                           .restaurantNameAr,
                                                       controller
-                                                          .listFoodSub[index]
+                                                          .listAllFoodInRest[
+                                                              index]
                                                           .restaurant),
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -123,10 +127,12 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                                                   child: Text(
                                                     translationData(
                                                         controller
-                                                            .listFoodSub[index]
+                                                            .listAllFoodInRest[
+                                                                index]
                                                             .descriptionAr,
                                                         controller
-                                                            .listFoodSub[index]
+                                                            .listAllFoodInRest[
+                                                                index]
                                                             .description),
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -147,11 +153,12 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                                                 CustomDescProd(
                                                   onTap: () {
                                                     controller.addIcon(
-                                                        controller.listFoodSub,
+                                                        controller
+                                                            .listAllFoodInRest,
                                                         i);
                                                   },
                                                   price: controller
-                                                      .listFoodSub[index]
+                                                      .listAllFoodInRest[index]
                                                       .price!,
                                                   time: "25 min",
                                                 )
@@ -164,7 +171,7 @@ class CustomContainerSubCatResturant extends StatelessWidget {
                           ),
                         ));
                   }),
-                  itemCount: controller.listFoodSub.length),
+                  itemCount: controller.listAllFoodInRest.length),
         ));
   }
 }

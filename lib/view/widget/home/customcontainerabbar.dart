@@ -14,6 +14,7 @@ class CustomContainerAbbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
           onPressed: onPressed,
@@ -21,25 +22,23 @@ class CustomContainerAbbar extends StatelessWidget {
           color: AppColors.blackColor2,
           iconSize: 35,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 54),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Delivery to".tr,
-                style: const TextStyle(
-                    color: AppColors.oraColor, fontWeight: FontWeight.normal),
-              ),
-              Text(
-                "baghdad,23street".tr,
-                style: const TextStyle(
-                    color: AppColors.blackColor3,
-                    fontWeight: FontWeight.normal),
-              ),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Delivery to".tr,
+              style: const TextStyle(
+                  color: AppColors.oraColor, fontWeight: FontWeight.normal),
+            ),
+            Text(
+              "All over Iraq".tr,
+              style: const TextStyle(
+                  color: AppColors.blackColor3,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 18),
+            ),
+          ],
         ),
         IconButton(
           onPressed: onPressedNotif,

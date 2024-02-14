@@ -49,7 +49,9 @@ class Profile extends StatelessWidget {
                   CustomContainerProfile(
                     texttitle: "email",
                     textcontant:
-                        myServices.sharedPreferences.getString("email")!,
+                        myServices.sharedPreferences.getString("email") == null
+                            ? "no Email".tr
+                            : myServices.sharedPreferences.getString("email")!,
                   ),
                   CustomContainerPassword(
                     textbutton: "Change",

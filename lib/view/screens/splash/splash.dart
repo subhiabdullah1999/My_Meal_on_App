@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   timerSplash() {
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Get.offNamed(AppRoutsName.choceLang);
     });
   }
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 SizedBox(
                   height: hight - 250,
                 ),
-                Loading(),
+                const Loading(),
               ],
             ),
           )

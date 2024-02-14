@@ -23,52 +23,57 @@ class CustomGategoriesResturantId extends StatelessWidget {
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return MaterialButton(
-                      minWidth: 30,
-                      elevation: 1,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      color: controller.selectedCategories == index
-                          ? AppColors.oraColor
-                          : AppColors.whiteColor,
-                      onPressed: () {
-                        controller.subCatId = controller
-                            .listresturantDetailes[controller.i]
-                            .subCategories![index]
-                            .id
-                            .toString();
-                        controller.onTaPCategories();
-                        controller.selectedCategories = index;
-                        controller.getSubCategoriesDescr(
-                            controller.restaurantId, controller.subCatId);
-
-                        controller.isLoad = true;
-                      },
-                      child: controller.selectedCategories == index &&
-                              controller.isLoad == true
-                          ? const CircularProgressIndicator()
-                          : Text(
-                              translationData(
-                                controller.listresturantDetailes[controller.i]
-                                    .subCategories![index].nameAr,
-                                controller.listresturantDetailes[controller.i]
-                                    .subCategories![index].name,
-                              ),
+                    return controller.listFoodSubcat.isEmpty
+                        ? Center(
+                            child: Text(
+                              "فارغ",
                               style: TextStyle(
-                                  fontSize:
-                                      controller.selectedCategories == index
-                                          ? 27
-                                          : 16),
+                                  color: AppColors.redcolor, fontSize: 20),
                             ),
-                    );
+                          )
+                        : MaterialButton(
+                            minWidth: 30,
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            color: controller.selectedCategories == index
+                                ? AppColors.oraColor
+                                : AppColors.whiteColor,
+                            onPressed: () {
+                              controller.categoriesId = controller
+                                  .listFoodSubcat[index].id
+                                  .toString();
+                              controller.onTaPCategories();
+                              controller.selectedCategories = index;
+                              controller.getAllFoodInRest(controller
+                                  .listFoodSubcat[index].id
+                                  .toString());
+
+                              controller.isLoad = true;
+                            },
+                            child: controller.selectedCategories == index &&
+                                    controller.isLoad == true
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    translationData(
+                                      controller.listFoodSubcat[index].nameAr,
+                                      controller.listFoodSubcat[index].name,
+                                    ),
+                                    style: TextStyle(
+                                        fontSize:
+                                            controller.selectedCategories ==
+                                                    index
+                                                ? 27
+                                                : 16),
+                                  ),
+                          );
                   },
                   separatorBuilder: (context, index) {
                     return const SizedBox(
                       width: 8,
                     );
                   },
-                  itemCount: controller.listresturantDetailes[controller.i]
-                      .subCategories!.length),
+                  itemCount: controller.listFoodSubcat.length),
             ));
   }
 }
